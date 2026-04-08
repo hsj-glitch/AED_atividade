@@ -1,7 +1,10 @@
-private ArrLength = dados.length;
-private int NovoArray = new int[ArrLength*2];
+private ArrLength = dados.length; /** vê tamanho original da lista */
+private int NovoArray = new int[ArrLength*2]; /** cria nova lista com o dobro do tamanho */
 
+/** copia valores para a nova lista */
 for (int i = 0, i < ArrLength, i++) {
     NovoArray[i] = dados[i];
 }
+
+/** atribui a lista nova à variável antiga */
 dados = NovoArray
