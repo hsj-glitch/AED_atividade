@@ -1,10 +1,64 @@
-private ArrLength = dados.length; /** vê tamanho original da lista */
-private int NovoArray = new int[ArrLength*2]; /** cria nova lista com o dobro do tamanho */
+public class MeuArrayDinamico {
+    private int [] dados ;
+    private int tamanho ; // quantos elementos realmente existem
 
-/** copia valores para a nova lista */
-for (int i = 0, i < ArrLength, i++) {
-    NovoArray[i] = dados[i];
+    public MeuArrayDinamico ( int capacidadeInicial ) {
+        this . dados = new int [ capacidadeInicial ];
+        this . tamanho = 0;
+    }
+
+    /** Dobra a capacidade do array interno . */
+    private void resize () {
+        int ArrLength = this.dados.length; // vê tamanho original da lista
+        int[] NovoArray = new int[ArrLength*2]; // cria nova lista com o dobro do tamanho
+        // copia valores para a nova lista
+        for (int i = 0; i < ArrLength; i++) {
+            NovoArray[i] = dados[i];
+        }
+        // atribui a lista nova à variável antiga
+        this.dados = NovoArray;
+    }
+
+    /** Adiciona ’valor ’ no final do array . */
+    public void add ( int valor ) {
+    // TODO 2a: se tamanho == dados . length , chame resize ()
+        if (this.tamanho == this.dados.length) { resize(); }
+    // TODO 2b: coloque ’valor ’ na posicao ’tamanho ’
+        this.dados[tamanho] = valor;
+    // TODO 2c: incremente ’tamanho ’
+        tamanho++;
+    }
+
+    /** Retorna o elemento na posicao ’indice ’. */
+    public int get ( int indice ) {
+        if ( indice < 0 || indice >= tamanho )
+        throw new IndexOutOfBoundsException (" Indice invalido : " + indice ) ;
+        return dados [ indice ];
+    }
+
+    public int size () {
+        return tamanho ;
+    }
+
+    /** Imprime o array no formato [a, b, c]. */
+    public void imprimir () {
+        StringBuilder sb = new StringBuilder ("[") ;
+        for (int i = 0; i < tamanho ; i ++) {
+            sb . append ( dados [ i ]) ;
+            if ( i < tamanho - 1) sb . append (", ") ;
+        }
+        sb . append ("]") ;System . out . println ( sb . toString () ) ;
+    }
+
+    // === Teste ===
+    public static void main ( String [] args ) {
+        MeuArrayDinamico arr = new MeuArrayDinamico (2) ;
+        arr . add (10) ;
+        arr . add (20) ;
+        arr . imprimir () ; // [10 , 20]
+        arr . add (30) ; // deve fazer resize aqui !
+        arr . add (40) ;
+        arr . imprimir () ; // [10 , 20 , 30 , 40]
+        System . out . println (" Tamanho : " + arr . size () ) ; // 4
+    }
 }
-
-/** atribui a lista nova à variável antiga */
-dados = NovoArray
