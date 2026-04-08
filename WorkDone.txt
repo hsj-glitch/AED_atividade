@@ -1,0 +1,7 @@
+private ArrLength = dados.length;
+private int NovoArray = new int[ArrLength*2];
+
+for (int i = 0, i < ArrLength, i++) {
+    NovoArray[i] = dados[i];
+}
+dados = NovoArray
