@@ -8,7 +8,7 @@ public class Josephus {
         Node atual = primeiro ;
         for (int i = 2; i <= N ; i ++) {
             // TODO : crie um novo Node com valor i
-            Node novo = new Node(i, atual);
+            Node novo = new Node(i, primeiro);
             // TODO : faca atual . next = novo
             atual.next = novo;
             // TODO : avance atual para novo
